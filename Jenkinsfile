@@ -35,7 +35,7 @@ node('mac-mini') {
 
             // Generate Checkstyle report
             //sh '/usr/local/bin/swiftlint lint --reporter checkstyle > checkstyle.xml || true'
-            sh 'echo "Skipped Checkstyle for now #TODO"
+            sh 'echo "Skipped Checkstyle for now #TODO"'
     
             // Publish checkstyle result
             //step([$class: 'CheckStylePublisher', canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'checkstyle.xml', unHealthy: ''])
