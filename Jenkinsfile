@@ -34,10 +34,11 @@ node('mac-mini') {
         }, Checkstyle: {
 
             // Generate Checkstyle report
-            sh '/usr/local/bin/swiftlint lint --reporter checkstyle > checkstyle.xml || true'
+            //sh '/usr/local/bin/swiftlint lint --reporter checkstyle > checkstyle.xml || true'
+            sh 'echo "Skipped Checkstyle for now #TODO"
     
             // Publish checkstyle result
-            step([$class: 'CheckStylePublisher', canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'checkstyle.xml', unHealthy: ''])
+            //step([$class: 'CheckStylePublisher', canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'checkstyle.xml', unHealthy: ''])
         }, failFast: true|false   
     }
 
