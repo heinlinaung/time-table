@@ -44,6 +44,7 @@ node('mac-mini') {
 
     stage ('Notify') {
         // Send slack notification
-        slackSend channel: '#my-team', message: 'Time Table - Successfully', teamDomain: 'my-team', token: 'my-token'
+        //slackSend channel: '#my-team', message: 'Time Table - Successfully', teamDomain: 'my-team', token: 'my-token'
+        slackSend(channel: "pipeline", message: "Hello, testing! :)", sendAsText: true)
     }
 }
