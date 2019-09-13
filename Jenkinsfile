@@ -1,4 +1,4 @@
-node('iOS Node') {
+node('mac-mini') {
 
     stage('Checkout/Build/Test') {
 
