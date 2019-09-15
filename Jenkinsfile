@@ -1,5 +1,5 @@
 node('mac-mini') {
-    stages {
+    // stages {
         stage('Checkout/Build/Test') {
 
             // Checkout files.
@@ -44,7 +44,7 @@ node('mac-mini') {
                 slackSend(channel: "pipeline", message: "Success! :)", sendAsText: true)
             }
         }
-    }
+    // }
 
     post {
         failure {
