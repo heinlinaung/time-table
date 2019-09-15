@@ -14,20 +14,20 @@ pipeline {
         LANG = "en_US.UTF-8"
     }
     stages {
-        stage('GitSCM') {
-            steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: 'master']],
-                    doGenerateSubmoduleConfigurations: false,
-                    extensions: [], submoduleCfg: [],
-                    userRemoteConfigs: [[
-                        name: 'github',
-                        url: 'https://github.com/mmorejon/time-table.git'
-                    ]]
-                ])
-            }
-        }
+        // stage('GitSCM') {
+        //     steps {
+        //         checkout([
+        //             $class: 'GitSCM',
+        //             branches: [[name: 'master']],
+        //             doGenerateSubmoduleConfigurations: false,
+        //             extensions: [], submoduleCfg: [],
+        //             userRemoteConfigs: [[
+        //                 name: 'github',
+        //                 url: 'https://github.com/mmorejon/time-table.git'
+        //             ]]
+        //         ])
+        //     }
+        // }
         stage('Run Unit and UI Tests') {
             steps {
                 script {
