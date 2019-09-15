@@ -1,13 +1,16 @@
 node('mac-mini') {
     // stages {
-        withEnv([PATH = "$HOME/.fastlane/bin:" +
-                "$HOME/.rvm/gems/ruby-2.5.3/bin:" +
-                "$HOME/.rvm/gems/ruby-2.5.3@global/bin:" +
-                "$HOME/.rvm/rubies/ruby-2.5.3/bin:" +
-                "/usr/local/bin:" +
-                "$PATH",
-             LC_ALL = "en_US.UTF-8",
-             LANG = "en_US.UTF-8"
+        // withEnv(['DISABLE_AUTH=true',
+        //              'DB_ENGINE=sqlite']) {
+        //         stage('Build') {
+        //             echo "Database engine is ${DB_ENGINE}"
+        //             echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+        //             sh 'printenv'
+        //         }
+        //     }
+        withEnv([
+             'LC_ALL = "en_US.UTF-8"',
+             'LANG = "en_US.UTF-8"'
             ]) {
             stage('Checkout/Build/Test') {
 
