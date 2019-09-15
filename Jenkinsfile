@@ -8,10 +8,6 @@ node('mac-mini') {
         //             sh 'printenv'
         //         }
         //     }
-        withEnv([
-             'LC_ALL = "en_US.UTF-8"',
-             'LANG = "en_US.UTF-8"'
-            ]) {
             stage('Checkout/Build/Test') {
 
                 // Checkout files.
@@ -56,7 +52,7 @@ node('mac-mini') {
                     slackSend(channel: "pipeline", message: "Success! :)", sendAsText: true)
                 // }
             }    
-        }
+        // }
         
     // }
 
