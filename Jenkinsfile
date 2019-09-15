@@ -22,27 +22,27 @@ node('mac-mini') {
         }
 
         stage('Run Unit and UI Tests') {
-          steps {
-            script {
+          // steps {
+            // script {
               try {
                 sh "fastlane runTests" 
               } catch(exc) {
                 error('There are failed tests.')
               }
-            }
-          }
+            // }
+          // }
         }
 
         stage('Build application for beta') {
-          steps {
+          // steps {
             sh "fastlane beta"
-          }
+          // }
         }
 
         stage('Inform Slack for success') {
-            steps {
+            // steps {
                 slackSend(channel: "pipeline", message: "Success! :)", sendAsText: true)
-            }
+            // }
         }
     // }
 
