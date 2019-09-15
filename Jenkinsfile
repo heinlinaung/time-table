@@ -22,10 +22,12 @@ pipeline {
         }
         stage('Run Unit and UI Tests') {
             steps {
-                try {
-                  sh "fastlane runTests" 
-                } catch(exc) {
-                  error('There are failed tests.')
+                script {
+                    try {
+                      sh "fastlane runTests" 
+                    } catch(exc) {
+                      error('There are failed tests.')
+                    }                    
                 }
             }
         }
