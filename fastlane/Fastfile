@@ -22,4 +22,26 @@ platform :ios do
     build_app(scheme: "TimeTable")
     upload_to_testflight
   end
+
+  desc "Run unit and ui tests"
+  lane :runTests do
+    run_tests(
+      scheme: "TimeTable",
+      #code_coverage: true 
+    )
+  end
+
+  desc "Create coverage html"
+  lane :createCoverageReport do
+    slather(
+      scheme: "TimeTable",
+      proj: "TimeTable.xcodeproj",
+      html: true,
+      ignore: [
+        "Pods/*",
+        "TimeTable/Library/*"
+      ]
+    )
+  end
+
 end
