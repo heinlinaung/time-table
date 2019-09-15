@@ -1,0 +1,8 @@
+app_identifier("com.werkztechnologies.sampleenkinsapp") # The bundle identifier of your app
+apple_id("lwinlwinmyint@amdon.com") # Your Apple email address
+
+itc_team_id("1664606") # App Store Connect Team ID
+team_id("4QXZMZXWUB") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
