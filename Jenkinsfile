@@ -51,4 +51,13 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+            slackSend(channel: "pipeline",color: "danger", message: "Failed! :)", sendAsText: true)
+        }
+        unstable {
+            // slackSend color: "danger", message: "*${env.JOB_NAME}* *${env.BRANCH_NAME}* job is unstable. Unstable means test failure, code violation etc."
+            slackSend(channel: "pipeline",color: "danger", message: "Job is unstable![Unstable means test failure, code violation etc] :)", sendAsText: true)
+        }
+    }
 }
