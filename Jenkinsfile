@@ -12,27 +12,16 @@ pipeline {
                 "$PATH"
         LC_ALL = "en_US.UTF-8"
         LANG = "en_US.UTF-8"
+        appName = "TimeTable"
+        teamName = "iOS"
     }
     stages {
-        // stage('GitSCM') {
-        //     steps {
-        //         checkout([
-        //             $class: 'GitSCM',
-        //             branches: [[name: 'master']],
-        //             doGenerateSubmoduleConfigurations: false,
-        //             extensions: [], submoduleCfg: [],
-        //             userRemoteConfigs: [[
-        //                 name: 'github',
-        //                 url: 'https://github.com/mmorejon/time-table.git'
-        //             ]]
-        //         ])
-        //     }
-        // }
         stage('Run Unit and UI Tests') {
             steps {
                 script {
                     try {
-                      sh "fastlane runTests" 
+                        slackSend(channel: "pipeline", message: "[${teamName}]${appName} - Job Started! :)", sendAsText: true)
+                        sh "fastlane runTests" 
                     } catch(exc) {
                       error('There are failed tests.')
                     }                    
@@ -44,20 +33,13 @@ pipeline {
                 sh "fastlane beta"
             }
         }
-
-        stage('Slark Noti') {
-            steps {
-                slackSend(channel: "pipeline", message: "Success! :)", sendAsText: true)
-            }
-        }
     }
     post {
-        failure {
-            slackSend(channel: "pipeline",color: "danger", message: "Failed! :)", sendAsText: true)
+        success {
+            slackSend(channel: "pipeline", message: "[${teamName}]${appName} - Success! :)", sendAsText: true)
         }
-        unstable {
-            // slackSend color: "danger", message: "*${env.JOB_NAME}* *${env.BRANCH_NAME}* job is unstable. Unstable means test failure, code violation etc."
-            slackSend(channel: "pipeline",color: "danger", message: "Job is unstable![Unstable means test failure, code violation etc] :)", sendAsText: true)
+        failure {
+            slackSend(channel: "pipeline",color: "danger", message: "[${teamName}]${appName} - Failed! :)", sendAsText: true)
         }
     }
 }
