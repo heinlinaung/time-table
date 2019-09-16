@@ -19,6 +19,7 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     increment_build_number(xcodeproj: "TimeTable.xcodeproj")
+    # enable_automatic_code_signing(path: "TimeTable.xcodeproj")
     build_app(scheme: "TimeTable")
     upload_to_testflight
   end
