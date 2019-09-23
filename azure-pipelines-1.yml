@@ -20,14 +20,15 @@ steps:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
     removeProfile: false
+    
 - task: Xcode@5
   inputs:
     actions: 'build'
-    scheme: ''
-    sdk: 'iphoneos'
-    configuration: 'Release'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath
+    scheme: 'TimeTable'
+    xcodeVersion: '9'
+    packageApp: true
+    signingOption: 'auto'
+    publishJUnitResults: true
 - task: AppStoreRelease@1
   inputs:
     serviceEndpoint: 'AppStoreConnect'
@@ -35,3 +36,4 @@ steps:
     appType: 'iOS'
     ipaPath: '**/*.ipa'
     releaseTrack: 'TestFlight'
+
