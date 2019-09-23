@@ -10,6 +10,16 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'Certificates(4Q).p12'
+    certPwd: 'Amdon1012'
+    keychain: 'temp'
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
+    removeProfile: false
 - task: Xcode@5
   inputs:
     actions: 'build'
