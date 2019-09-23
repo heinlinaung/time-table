@@ -24,13 +24,24 @@ steps:
 - task: Xcode@5
   inputs:
     actions: 'build'
-    sdk: 'iphoneos'
     configuration: 'Debug'
+    sdk: 'iphoneos'
     scheme: 'TimeTable'
     xcodeVersion: '9'
-    packageApp: true
-    signingOption: 'auto'
-    publishJUnitResults: true
+    packageApp: false
+    signingOption: 'default'
+    destinationPlatformOption: 'iOS'
+    destinationSimulators: 'iPhone 6'
+# - task: Xcode@5
+#   inputs:
+#     actions: 'build'
+#     sdk: 'iphoneos'
+#     configuration: 'Debug'
+#     scheme: 'TimeTable'
+#     xcodeVersion: '9'
+#     packageApp: true
+#     signingOption: 'auto'
+#     publishJUnitResults: true
 - task: AppStoreRelease@1
   inputs:
     serviceEndpoint: 'AppStoreConnect'
