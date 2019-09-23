@@ -25,6 +25,7 @@ steps:
   inputs:
     actions: 'build'
     sdk: 'iphoneos'
+    configuration: 'Debug'
     scheme: 'TimeTable'
     xcodeVersion: '9'
     packageApp: true
