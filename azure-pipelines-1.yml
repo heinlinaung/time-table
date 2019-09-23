@@ -13,7 +13,7 @@ steps:
 - task: InstallAppleCertificate@2
   inputs:
     certSecureFile: 'Certificates(4Q).p12'
-    certPwd: 'Amdon1012'
+    certPwd: $(P12password)
     keychain: 'temp'
 - task: InstallAppleProvisioningProfile@1
   inputs:
@@ -21,17 +21,31 @@ steps:
     provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
     removeProfile: false
     
+# - task: Xcode@5
+#   inputs:
+#     actions: 'build'
+#     configuration: 'Debug'
+#     sdk: 'iphoneos'
+#     scheme: 'TimeTable'
+#     xcodeVersion: '9'
+#     packageApp: false
+#     signingOption: 'default'
+#     destinationPlatformOption: 'iOS'
+#     destinationSimulators: 'iPhone 6'
+
 - task: Xcode@5
   inputs:
     actions: 'build'
-    configuration: 'Debug'
-    sdk: 'iphoneos'
+    configuration: '$(CONFIGURATION)'
     scheme: 'TimeTable'
     xcodeVersion: '9'
     packageApp: false
-    signingOption: 'default'
+    signingOption: 'manual'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
     destinationPlatformOption: 'iOS'
     destinationSimulators: 'iPhone 6'
+
 # - task: Xcode@5
 #   inputs:
 #     actions: 'build'
