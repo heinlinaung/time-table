@@ -18,3 +18,12 @@ steps:
     configuration: 'Release'
     xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
     xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath
+- task: AppStoreRelease@1
+  inputs:
+    authType: 'UserAndPass'
+    username: 'lwinlwinmyint@amdon.com'
+    password: 'ItalySakura1990'
+    appIdentifier: 'com.werkztechnologies.sampleenkinsapp'
+    appType: 'iOS'
+    ipaPath: '**/*.ipa'
+    releaseTrack: 'TestFlight'
