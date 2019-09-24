@@ -43,7 +43,7 @@ steps:
     signingOption: 'manual'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-    provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
+    provisioningProfileName: '$(APPLE_SIGNING_PROFILE_NAME)'
     destinationPlatformOption: 'iOS'
     destinationSimulators: 'iPhone 6'
 
