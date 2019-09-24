@@ -15,12 +15,25 @@ steps:
     certSecureFile: 'Certificates(4N-WIldCard).p12'
     certPwd: 'Amdon1012'
     keychain: 'temp'
+
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'Certificates(4Q).p12'
+    certPwd: 'Amdon1012'
+    keychain: 'temp'
+
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'XC_Wildcard__Development.mobileprovision'
     removeProfile: false
     
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
+    removeProfile: false
+
 # - task: Xcode@5
 #   inputs:
 #     actions: 'build'
@@ -48,10 +61,10 @@ steps:
     scheme: 'TimeTable'
     xcodeVersion: '9'
     packageApp: false
-    signingOption: 'manual'
-    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-    provisioningProfileName: 'XC_Wildcard__Development.mobileprovision'
+    signingOption: 'auto'
+    # signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    # provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+    # provisioningProfileName: 'XC_Wildcard__Development.mobileprovision'
     destinationPlatformOption: 'iOS'
     destinationSimulators: 'iPhone 6'
 
