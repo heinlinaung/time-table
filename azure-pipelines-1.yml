@@ -12,7 +12,7 @@ pool:
 steps:
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'Certificates(Dist).p12'
+    certSecureFile: 'Certificates(GG).p12'
     certPwd: 'Amdon1012'
     keychain: 'temp'
 
