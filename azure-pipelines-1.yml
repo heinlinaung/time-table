@@ -29,10 +29,10 @@ steps:
     scheme: 'TimeTable'
     xcodeVersion: '9'
     packageApp: false
-    signingOption: 'auto'
-    # signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    # provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-    # provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
+    signingOption: 'manual'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+    provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
     destinationPlatformOption: 'iOS'
     destinationSimulators: 'iPhone 6'
 
