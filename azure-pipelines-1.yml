@@ -43,9 +43,9 @@ steps:
     script: '/usr/local/bin/fastlane beta'
 
 - task: CmdLine@2
+  continueOnError: true
   inputs:
     script: 'cat /Users/vsts/Library/Logs/gym/TimeTable-Timetable.log'
-    failOnStderr: false
     
 # - task: Xcode@5
 #   inputs:
