@@ -43,6 +43,7 @@ steps:
     script: '/usr/local/bin/fastlane beta'
 
 - task: CmdLine@2
+  condition: always()
   continueOnError: true
   inputs:
     script: 'cat /Users/vsts/Library/Logs/gym/TimeTable-Timetable.log'
