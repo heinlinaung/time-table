@@ -29,13 +29,12 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
-- task: Xcode@5  
+
+- task: Xcode@5
   inputs:
     actions: 'build'
-    sdk : ''
-    configuration: '$(Configuration)'
     scheme: 'TimeTable'
-    xcodeVersion: '10'
+    xcodeVersion: '9'
     packageApp: false
     signingOption: 'manual'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
@@ -43,6 +42,21 @@ steps:
     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
     destinationPlatformOption: 'iOS'
     destinationSimulators: 'iPhone 6'
+
+# - task: Xcode@5  
+#   inputs:
+#     actions: 'build'
+#     sdk : ''
+#     configuration: '$(Configuration)'
+#     scheme: 'TimeTable'
+#     xcodeVersion: '10'
+#     packageApp: false
+#     signingOption: 'manual'
+#     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+#     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+#     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
+#     destinationPlatformOption: 'iOS'
+#     destinationSimulators: 'iPhone 6'
 - task: AppStoreRelease@1
   inputs:
     serviceEndpoint: 'AppStoreConnect'
