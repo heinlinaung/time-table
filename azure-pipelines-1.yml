@@ -36,6 +36,9 @@ steps:
 
 - task: CmdLine@2
   inputs:
+    script: '/usr/bin/xcodebuild -version'
+- task: CmdLine@2
+  inputs:
     script: '/usr/local/bin/fastlane beta'
 
 # - task: Xcode@5
