@@ -32,7 +32,15 @@ steps:
 #     signingOption: 'default'
 #     destinationPlatformOption: 'iOS'
 #     destinationSimulators: 'iPhone 6'
-
+# - task: Xcode@5
+#   inputs:
+#     actions: 'build'
+#     packageApp: false
+#     signingOption: 'auto'
+    # signingOption: 'manual'
+    # signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    # provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+    # provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
 - task: Xcode@5
   inputs:
     actions: 'build'
@@ -40,10 +48,7 @@ steps:
     scheme: 'TimeTable'
     xcodeVersion: '9'
     packageApp: false
-    signingOption: 'manual'
-    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-    provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
+    signingOption: 'auto'
     destinationPlatformOption: 'iOS'
     destinationSimulators: 'iPhone 6'
 
