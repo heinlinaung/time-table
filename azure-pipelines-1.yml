@@ -28,6 +28,7 @@ steps:
 - task: Xcode@5  
   inputs:
     actions: 'build'
+    sdk : ''
     configuration: '$(Configuration)'
     scheme: 'TimeTable'
     xcodeVersion: '10'
@@ -38,7 +39,6 @@ steps:
     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
     destinationPlatformOption: 'iOS'
     destinationSimulators: 'iPhone 6'
-
 - task: AppStoreRelease@1
   inputs:
     serviceEndpoint: 'AppStoreConnect'
