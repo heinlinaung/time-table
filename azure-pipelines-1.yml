@@ -12,8 +12,8 @@ pool:
 steps:
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'Certificates(Dist).p12'
-    certPwd: 'Amdon1012'
+    certSecureFile: 'Certificates(GG).p12'
+    certPwd: '$(P12password)'
     keychain: 'temp'
 
 - task: InstallAppleProvisioningProfile@1
@@ -21,13 +21,16 @@ steps:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
     removeProfile: false
-    
+
+- task: CmdLine@2
+  inputs:
+    script: 'security find-identity -p codesigning -v'
 - task: Xcode@5  
   inputs:
     actions: 'build'
-    configuration: 'Release'
+    configuration: '$(Configuration)'
     scheme: 'TimeTable'
-    xcodeVersion: '9'
+    xcodeVersion: '10'
     packageApp: false
     signingOption: 'manual'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
