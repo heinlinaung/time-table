@@ -23,7 +23,7 @@ steps:
     removeProfile: false
     
 - task: Xcode@5  
-inputs:
+  inputs:
     actions: 'build'
     configuration: 'Release'
     scheme: 'TimeTable'
