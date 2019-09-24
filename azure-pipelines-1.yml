@@ -30,6 +30,10 @@ steps:
   inputs:
     script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
 
+- task: CmdLine@2
+  inputs:
+    script: '/usr/bin/xcodebuild -showsdks'
+
 - task: Xcode@5
   inputs:
     actions: 'build'
