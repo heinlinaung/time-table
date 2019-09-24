@@ -45,6 +45,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'cat /Users/vsts/Library/Logs/gym/TimeTable-Timetable.log'
+    failOnStderr: true
     
 # - task: Xcode@5
 #   inputs:
