@@ -12,7 +12,7 @@ pool:
 steps:
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'Certificates(4N-WIldCard).p12'
+    certSecureFile: 'Certificates(4Q).p12'
     certPwd: 'Amdon1012'
     keychain: 'temp'
 - task: InstallAppleProvisioningProfile@1
@@ -44,7 +44,7 @@ steps:
 - task: Xcode@5
   inputs:
     actions: 'build'
-    configuration: 'Debug'
+    configuration: 'Release'
     scheme: 'TimeTable'
     xcodeVersion: '9'
     packageApp: false
