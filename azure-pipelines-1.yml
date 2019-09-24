@@ -22,13 +22,12 @@ steps:
     provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
     removeProfile: false
     
-
 - task: Xcode@5  
   inputs:
     actions: 'build'
     configuration: 'Release'
     scheme: 'TimeTable'
-    xcodeVersion: '9'
+    xcodeVersion: '10'
     packageApp: false
     signingOption: 'manual'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
