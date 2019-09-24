@@ -37,10 +37,15 @@ steps:
 - task: CmdLine@2
   inputs:
     script: '/usr/bin/xcodebuild -version'
+
 - task: CmdLine@2
   inputs:
     script: '/usr/local/bin/fastlane beta'
 
+- task: CmdLine@2
+  inputs:
+    script: 'cat /Users/vsts/Library/Logs/gym/TimeTable-Timetable.log'
+    
 # - task: Xcode@5
 #   inputs:
 #     actions: 'build'
