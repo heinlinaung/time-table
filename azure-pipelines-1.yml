@@ -34,18 +34,22 @@ steps:
   inputs:
     script: '/usr/bin/xcodebuild -showsdks'
 
-- task: Xcode@5
+- task: CmdLine@2
   inputs:
-    actions: 'build'
-    scheme: 'TimeTable'
-    xcodeVersion: '9'
-    packageApp: false
-    signingOption: 'manual'
-    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-    provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
-    destinationPlatformOption: 'iOS'
-    destinationSimulators: 'iPhone 6'
+    script: '/usr/local/bin/fastlane beta'
+
+# - task: Xcode@5
+#   inputs:
+#     actions: 'build'
+#     scheme: 'TimeTable'
+#     xcodeVersion: '9'
+#     packageApp: false
+#     signingOption: 'manual'
+#     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+#     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+#     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
+#     destinationPlatformOption: 'iOS'
+#     destinationSimulators: 'iPhone 6'
 
 # - task: Xcode@5  
 #   inputs:
@@ -61,10 +65,10 @@ steps:
 #     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
 #     destinationPlatformOption: 'iOS'
 #     destinationSimulators: 'iPhone 6'
-- task: AppStoreRelease@1
-  inputs:
-    serviceEndpoint: 'AppStoreConnect'
-    appIdentifier: 'com.werkztechnologies.sampleenkinsapp'
-    appType: 'iOS'
-    ipaPath: '**/*.ipa'
-    releaseTrack: 'TestFlight'
+# - task: AppStoreRelease@1
+#   inputs:
+#     serviceEndpoint: 'AppStoreConnect'
+#     appIdentifier: 'com.werkztechnologies.sampleenkinsapp'
+#     appType: 'iOS'
+#     ipaPath: '**/*.ipa'
+#     releaseTrack: 'TestFlight'
