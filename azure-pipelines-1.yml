@@ -44,7 +44,7 @@ steps:
 - task: Xcode@5
   inputs:
     actions: 'build'
-    configuration: '$(CONFIGURATION)'
+    configuration: 'Release'
     scheme: 'TimeTable'
     xcodeVersion: '9'
     packageApp: false
