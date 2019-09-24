@@ -13,7 +13,7 @@ steps:
 - task: InstallAppleCertificate@2
   inputs:
     certSecureFile: 'Certificates(GG).p12'
-    certPwd: 'Amdon1012'
+    certPwd: '$(P12password)'
     keychain: 'temp'
 
 - task: InstallAppleProvisioningProfile@1
@@ -25,11 +25,11 @@ steps:
 - task: Xcode@5  
   inputs:
     actions: 'build'
-    configuration: 'Release'
+    configuration: '$(Configuration)'
     scheme: 'TimeTable'
     xcodeVersion: '10'
     packageApp: false
-    signingOption: 'manual'
+    signingOption: 'default'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
