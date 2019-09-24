@@ -21,7 +21,10 @@ steps:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
     removeProfile: false
-    
+
+- task: CmdLine@2
+  inputs:
+    script: 'security find-identity -p codesigning -v'
 - task: Xcode@5  
   inputs:
     actions: 'build'
