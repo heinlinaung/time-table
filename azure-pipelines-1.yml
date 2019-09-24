@@ -32,7 +32,7 @@ steps:
     scheme: 'TimeTable'
     xcodeVersion: '10'
     packageApp: false
-    signingOption: 'default'
+    signingOption: 'manual'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
