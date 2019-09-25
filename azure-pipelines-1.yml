@@ -15,7 +15,11 @@ steps:
     certSecureFile: 'Certificates(GG).p12'
     certPwd: '$(P12password)'
     keychain: 'temp'
-
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'CertificatesKey(9V).p12'
+    certPwd: '$(P12password)'
+    keychain: 'temp'
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
