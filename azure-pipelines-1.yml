@@ -18,25 +18,25 @@ steps:
     # sshPassphrase: '$(sshPass)'
     sshKeySecureFile: 'id_rsa'
 
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: 'Certificates(GG).p12'
-    certPwd: '$(P12password)'
-    keychain: 'temp'
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: 'iPhDev(9V-lwin).p12'
-    certPwd: '$(P12password)'
-    keychain: 'temp'
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
-    removeProfile: false
+# - task: InstallAppleCertificate@2
+#   inputs:
+#     certSecureFile: 'Certificates(GG).p12'
+#     certPwd: '$(P12password)'
+#     keychain: 'temp'
+# - task: InstallAppleCertificate@2
+#   inputs:
+#     certSecureFile: 'iPhDev(9V-lwin).p12'
+#     certPwd: '$(P12password)'
+#     keychain: 'temp'
+# - task: InstallAppleProvisioningProfile@1
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
+#     removeProfile: false
 
-- task: CmdLine@2
-  inputs:
-    script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
+# - task: CmdLine@2
+#   inputs:
+#     script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
 
 - task: CmdLine@2
   inputs:
