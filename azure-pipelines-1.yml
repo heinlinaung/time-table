@@ -17,7 +17,7 @@ steps:
     keychain: 'temp'
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'CertificatesKey(9V).p12'
+    certSecureFile: 'iPhDev(9V-lwin).p12'
     certPwd: '$(P12password)'
     keychain: 'temp'
 - task: InstallAppleProvisioningProfile@1
