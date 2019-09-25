@@ -36,10 +36,6 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'security find-identity -p codesigning -v'
-
-- task: CmdLine@2
-  inputs:
     script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
 
 - task: CmdLine@2
@@ -61,6 +57,12 @@ steps:
   continueOnError: true
   inputs:
     script: 'cat /Users/vsts/Library/Logs/gym/TimeTable-Timetable.log'
+  
+- task: CmdLine@2
+  condition: always()
+  continueOnError: true
+  inputs:
+    script: 'security find-identity -p codesigning -v'
     
 # - task: Xcode@5
 #   inputs:
