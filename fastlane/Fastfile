@@ -31,7 +31,8 @@ platform :ios do
     gym(
     	scheme: "TimeTable",
     	configuration: "Release",
-    	clean: true
+    	clean: true,
+      destination: "platform=iOS Simulator,name=iPhone 6",
     )
   end
 
