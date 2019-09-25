@@ -57,6 +57,8 @@ steps:
 - task: CmdLine@2
   inputs:
     script: '/usr/local/bin/fastlane beta'
+  env:
+      MATCH_PASSWORD: '$(matchPwd)'
 
 - task: CmdLine@2
   condition: always()
