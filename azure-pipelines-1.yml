@@ -10,6 +10,13 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
+
+- task: InstallSSHKey@0
+  inputs:
+    knownHostsEntry: 'bitbucket.org,131.103.20.168 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw=='
+    sshPublicKey: 'id_rsa.pub'
+    sshPassphrase: '$(sshPass)'
+    sshKeySecureFile: 'id_rsa'
 - task: InstallAppleCertificate@2
   inputs:
     certSecureFile: 'Certificates(GG).p12'
@@ -17,7 +24,7 @@ steps:
     keychain: 'temp'
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'CertificatesKey(9V).p12'
+    certSecureFile: 'iPhDev(9V-lwin).p12'
     certPwd: '$(P12password)'
     keychain: 'temp'
 - task: InstallAppleProvisioningProfile@1
