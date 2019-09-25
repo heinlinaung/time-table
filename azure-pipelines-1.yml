@@ -25,24 +25,60 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'security find-identity -p codesigning -v'
-- task: Xcode@5  
-  inputs:
-    actions: 'build'
-    configuration: '$(Configuration)'
-    scheme: 'TimeTable'
-    xcodeVersion: '10'
-    packageApp: false
-    signingOption: 'manual'
-    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-    provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
-    destinationPlatformOption: 'iOS'
-    destinationSimulators: 'iPhone 6'
 
-- task: AppStoreRelease@1
+- task: CmdLine@2
   inputs:
-    serviceEndpoint: 'AppStoreConnect'
-    appIdentifier: 'com.werkztechnologies.sampleenkinsapp'
-    appType: 'iOS'
-    ipaPath: '**/*.ipa'
-    releaseTrack: 'TestFlight'
+    script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
+
+- task: CmdLine@2
+  inputs:
+    script: '/usr/bin/xcodebuild -showsdks'
+
+- task: CmdLine@2
+  inputs:
+    script: '/usr/bin/xcodebuild -version'
+
+- task: CmdLine@2
+  inputs:
+    script: '/usr/local/bin/fastlane beta'
+
+- task: CmdLine@2
+  condition: always()
+  continueOnError: true
+  inputs:
+    script: 'cat /Users/vsts/Library/Logs/gym/TimeTable-Timetable.log'
+    
+# - task: Xcode@5
+#   inputs:
+#     actions: 'build'
+#     scheme: 'TimeTable'
+#     xcodeVersion: '9'
+#     packageApp: false
+#     signingOption: 'manual'
+#     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+#     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+#     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
+#     destinationPlatformOption: 'iOS'
+#     destinationSimulators: 'iPhone 6'
+
+# - task: Xcode@5  
+#   inputs:
+#     actions: 'build'
+#     sdk : ''
+#     configuration: '$(Configuration)'
+#     scheme: 'TimeTable'
+#     xcodeVersion: '10'
+#     packageApp: false
+#     signingOption: 'manual'
+#     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+#     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+#     provisioningProfileName: 'SampleJenkinsApp_AppStore.mobileprovision'
+#     destinationPlatformOption: 'iOS'
+#     destinationSimulators: 'iPhone 6'
+# - task: AppStoreRelease@1
+#   inputs:
+#     serviceEndpoint: 'AppStoreConnect'
+#     appIdentifier: 'com.werkztechnologies.sampleenkinsapp'
+#     appType: 'iOS'
+#     ipaPath: '**/*.ipa'
+#     releaseTrack: 'TestFlight'
