@@ -20,7 +20,11 @@ platform :ios do
   lane :beta do
   	enable_automatic_code_signing(path: "TimeTable.xcodeproj")
     increment_build_number(xcodeproj: "TimeTable.xcodeproj")
-    build_app(scheme: "TimeTable",export_xcargs: "-allowProvisioningUpdates")
+    build_app(
+    	scheme: "TimeTable",
+    	export_xcargs: "-allowProvisioningUpdates",
+    	export_method: "app-store"
+    	)
     upload_to_testflight
     push_to_git_remote
   end
