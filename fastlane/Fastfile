@@ -16,37 +16,31 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Push a new beta build to TestFlight"
+  # desc "Push a new beta build to TestFlight"
+  # lane :beta do
+  # 	match(type: "development", readonly: is_ci)
+  #   increment_build_number(xcodeproj: "TimeTable.xcodeproj")
+  #   # build_app(scheme: "TimeTable")
+  #   gym(scheme: "TimeTable")
+  #   upload_to_testflight
+  #   push_to_git_remote
+  # end
   lane :beta do
-  	enable_automatic_code_signing(path: "TimeTable.xcodeproj")
-    increment_build_number(xcodeproj: "TimeTable.xcodeproj")
-    build_app(
+    match(type: "appstore", readonly: is_ci)
+
+    gym(
     	scheme: "TimeTable",
-    	export_xcargs: "-allowProvisioningUpdates",
-    	export_method: "app-store"
-    	)
-    upload_to_testflight
-    push_to_git_remote
+    	configuration: "Release",
+    	clean: true
+    )
   end
+
 
   desc "Run unit and ui tests"
   lane :runTests do
     run_tests(
       scheme: "TimeTable",
       #code_coverage: true 
-    )
-  end
-
-  desc "Create coverage html"
-  lane :createCoverageReport do
-    slather(
-      scheme: "TimeTable",
-      proj: "TimeTable.xcodeproj",
-      html: true,
-      ignore: [
-        "Pods/*",
-        "TimeTable/Library/*"
-      ]
     )
   end
 
