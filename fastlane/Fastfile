@@ -29,8 +29,20 @@ platform :ios do
   # before_all do
   #   unlock_keychain(path: '~/Library/Keychains/login.keychain',password: "A1DC2A63B3D14817A64619FDDBC92264")
   # end
+  def ensure_temp_keychain(name)
+    delete_keychain(
+      name: name
+    ) if File.exist? File.expand_path("~/Library/Keychains/#{name}-db")
+    create_keychain(
+      name: name,
+      password: 'ggwp',
+      unlock: true,
+      timeout: false
+    )
+  end
 
   lane :beta do
+  	ensure_temp_keychain 'fastlane_enterprise'
     match(type: "appstore", readonly: true)
     increment_build_number(xcodeproj: "TimeTable.xcodeproj")
     gym(
@@ -38,7 +50,8 @@ platform :ios do
     	configuration: "Release",
     	clean: true,
         sdk: "iphoneos",
-        export_xcargs: "-allowProvisioningUpdates"
+        export_xcargs: "-allowProvisioningUpdates",
+        keychain_name: 'fastlane_enterprise'
       #destination: "platform=iOS Simulator,name=iPhone 6",
     )
   end
