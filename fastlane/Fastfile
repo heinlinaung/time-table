@@ -38,6 +38,7 @@ platform :ios do
       name: 'apk_ggwp',
       unlock: true,
       timeout: false,
+      default_keychain: true,
       password: 'ggwp'
     )
   end
