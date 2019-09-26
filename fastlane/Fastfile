@@ -71,7 +71,8 @@ platform :ios do
     	configuration: "Release",
     	clean: true,
         sdk: "iphoneos",
-        export_xcargs: "-allowProvisioningUpdates"
+        export_xcargs: "-allowProvisioningUpdates",
+        verbose: true
       #destination: "platform=iOS Simulator,name=iPhone 6",
     )
   end
