@@ -31,7 +31,7 @@ platform :ios do
   # end
 
   lane :beta do
-    match(type: "appstore", readonly: true, keychain_name:'login.keychain',keychain_password:'A1DC2A63B3D14817A64619FDDBC92264')
+    match(type: "appstore", readonly: true)
 
     gym(
     	scheme: "TimeTable",
