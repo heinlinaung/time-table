@@ -17,36 +17,41 @@ steps:
     sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCqalxjeXSwhWQizVjH89eC8YsVmrCgrp9Zu3y5nQa9taNDEOh1WyklzsMoI2rdiFDtPu6NchqOalfMfQdeyKhxeNf82S88IVws7DpcDV9o1n+E585id1DYy/T7gSHsQ5Sri6LDKvkY13U6xpml/MSzpkghwasCy1suHsSFX7zYr5y6/FnSJiIh8BJRKxoR6onioDZphU3rEwqA52v+3B29I6NNao1J+LQfAebCNs67tjClMMcMEF8CQAbbNx68U4OrcRtlEloJFBNWCAckmiW6DGzMK9NLGsuF1KhHQy0ZkxG2vCwDvKukPfS3hC544+wAFyfKHBFxSeQx0+unouDC8hpCb9HSf/2yFcF5gd6YHOtVnzyiw3P8iM4t0ZwmA0FyJlRCdRcK01WQrO7q3ceAPW5XILiQ4Dg9mbPznrgDTgOfThIPJcpudACC4qtbQdcBB53KJ/4PjX+fHuZukzCvLBusBIzjKH/bI6PvJeVwUCVXsOKIwlbNUJCwckG+T10p5AO5ayVaBE2Cg5hVw8jlD+YqYlW8DcBC7tOFPwG3jDsKz3Kw/bxoes/yL9zstyTqCtO/Aul2J8o6B6cWNz4YWQsw60JEHF68yJySSU+RdLCFZS15VGBgybiwhSkfJKQktPpRqYsCPnAJOFghJxVOTwddXWO5xx+dOa6ASBGaNw== heinlinaung@amdon.com'
     # sshPassphrase: '$(sshPass)'
     sshKeySecureFile: 'id_rsa'
+- task: InstallAppleCertificate@2
+  displayName: 'Install Apple Cert'
+  inputs:
+    certSecureFile: 'Certificates(GG).p12'
+    certPwd: '$(P12password)'
+    keychain: 'temp'
 
-# - task: InstallAppleCertificate@2
-#   inputs:
-#     certSecureFile: 'Certificates(GG).p12'
-#     certPwd: '$(P12password)'
-#     keychain: 'temp'
 # - task: InstallAppleCertificate@2
 #   inputs:
 #     certSecureFile: 'iPhDev(9V-lwin).p12'
 #     certPwd: '$(P12password)'
 #     keychain: 'temp'
-# - task: InstallAppleProvisioningProfile@1
-#   inputs:
-#     provisioningProfileLocation: 'secureFiles'
-#     provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
-#     removeProfile: false
+- task: InstallAppleProvisioningProfile@1
+  displayName: 'Install Apple Provisioning Profile'
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'SampleJenkinsApp_AppStore.mobileprovision'
+    removeProfile: false
 
 # - task: CmdLine@2
 #   inputs:
 #     script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
 
 - task: CmdLine@2
+  displayName: 'ShowSDKs'
   inputs:
     script: '/usr/bin/xcodebuild -showsdks'
 
 - task: CmdLine@2
+  displayName: 'Xcode version'
   inputs:
     script: '/usr/bin/xcodebuild -version'
 
 - task: CmdLine@2
+  displayName: 'Fastlane beta --verbose'
   inputs:
     script: '/usr/local/bin/fastlane beta'
   env:
@@ -55,12 +60,14 @@ steps:
       MATCH_KEYCHAIN_PASSWORD : 'A1DC2A63B3D14817A64619FDDBC92264'
 
 - task: CmdLine@2
+  displayName: 'LOG'
   condition: always()
   continueOnError: true
   inputs:
     script: 'cat /Users/vsts/Library/Logs/gym/TimeTable-Timetable.log'
   
 - task: CmdLine@2
+  displayName: 'Check installed Certs'
   condition: always()
   continueOnError: true
   inputs:
