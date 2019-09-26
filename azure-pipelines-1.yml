@@ -75,7 +75,7 @@ steps:
   condition: always()
   continueOnError: true
   inputs:
-    script: 'security find-identity -p codesigning -v'
+    script: 'security find-identity -v -p codesigning fastlane_enterprise'
     
 # - task: Xcode@5
 #   inputs:
