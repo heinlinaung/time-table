@@ -31,7 +31,7 @@ platform :ios do
   # end
 
   lane :beta do
-    match(type: "appstore", readonly: true)
+    match(type: "appstore", readonly: false)
 
     gym(
     	scheme: "TimeTable",
