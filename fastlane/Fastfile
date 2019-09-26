@@ -69,7 +69,7 @@ platform :ios do
     gym(
     	scheme: "TimeTable",
     	configuration: "Release",
-    	clean: true,
+    	clean: false,
         sdk: "iphoneos",
         export_xcargs: "-allowProvisioningUpdates",
         verbose: true
