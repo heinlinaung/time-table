@@ -31,13 +31,14 @@ platform :ios do
   # end
 
   lane :beta do
-    match(type: "appstore", readonly: false)
-
+    match(type: "appstore", readonly: true)
+    increment_build_number(xcodeproj: "TimeTable.xcodeproj")
     gym(
     	scheme: "TimeTable",
     	configuration: "Release",
     	clean: true,
-        sdk: "iphoneos"
+        sdk: "iphoneos",
+        export_xcargs: "-allowProvisioningUpdates"
       #destination: "platform=iOS Simulator,name=iPhone 6",
     )
   end
