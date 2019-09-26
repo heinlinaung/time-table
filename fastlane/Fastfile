@@ -56,7 +56,7 @@ platform :ios do
   # end
 
   lane :beta do
-  	ensure_temp_keychain 'fastlane_enterprise'
+  	# ensure_temp_keychain 'fastlane_enterprise'
     # match(type: "appstore", readonly: true,keychain_name: 'fastlane_enterprise',keychain_password: 'ggwp')
     match(
 		type: "appstore",
