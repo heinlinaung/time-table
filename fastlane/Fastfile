@@ -51,7 +51,8 @@ platform :ios do
     	clean: true,
         sdk: "iphoneos",
         export_xcargs: "-allowProvisioningUpdates",
-        keychain_name: 'fastlane_enterprise'
+        keychain_name: 'fastlane_enterprise',
+        keychain_password: 'ggwp'
       #destination: "platform=iOS Simulator,name=iPhone 6",
     )
   end
