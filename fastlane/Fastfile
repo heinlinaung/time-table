@@ -32,7 +32,8 @@ platform :ios do
     	scheme: "TimeTable",
     	configuration: "Release",
     	clean: true,
-      destination: "platform=iOS Simulator,name=iPhone 6",
+        sdk: "iphoneos"
+      #destination: "platform=iOS Simulator,name=iPhone 6",
     )
   end
 
