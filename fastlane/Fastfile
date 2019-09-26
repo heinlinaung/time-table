@@ -37,6 +37,7 @@ platform :ios do
       name: name,
       password: 'ggwp',
       unlock: true,
+      default_keychain: true,
       timeout: false
     )
   end
