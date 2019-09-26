@@ -38,7 +38,6 @@ platform :ios do
       name: 'apk_ggwp',
       unlock: true,
       timeout: false,
-      lock_when_sleeps: true,
       password: 'ggwp'
     )
   end
@@ -62,7 +61,7 @@ platform :ios do
 		type: "appstore",
 		keychain_name: 'apk_ggwp',
 		keychain_password: 'ggwp',
-		readonly: false,
+		readonly: true,
 		verbose: true
 	)
     increment_build_number(xcodeproj: "TimeTable.xcodeproj")
