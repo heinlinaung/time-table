@@ -43,16 +43,14 @@ platform :ios do
 
   lane :beta do
   	ensure_temp_keychain 'fastlane_enterprise'
-    match(type: "appstore", readonly: true)
+    match(type: "appstore", readonly: true,keychain_name: 'fastlane_enterprise',keychain_password: 'ggwp')
     increment_build_number(xcodeproj: "TimeTable.xcodeproj")
     gym(
     	scheme: "TimeTable",
     	configuration: "Release",
     	clean: true,
         sdk: "iphoneos",
-        export_xcargs: "-allowProvisioningUpdates",
-        keychain_name: 'fastlane_enterprise',
-        keychain_password: 'ggwp'
+        export_xcargs: "-allowProvisioningUpdates"
       #destination: "platform=iOS Simulator,name=iPhone 6",
     )
   end
