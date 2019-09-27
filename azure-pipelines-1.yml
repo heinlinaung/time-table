@@ -62,7 +62,7 @@ steps:
   env:
       FASTLANE_PASSWORD: '$(appleIDPwd)'
       MATCH_PASSWORD: '$(matchPwd)'
-      MATCH_KEYCHAIN_PASSWORD : 'A1DC2A63B3D14817A64619FDDBC92264'
+      MATCH_KEYCHAIN_PASSWORD : 'ggwp'
 
 # - task: CmdLine@2
 #   displayName: 'MANUAL BUILD'
