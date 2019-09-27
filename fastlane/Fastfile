@@ -26,6 +26,11 @@ platform :ios do
   #   push_to_git_remote
   # end
 
+  # Fetch the keychain env variables
+  # securely stored in the azure pipeline yml
+  keychain_name = ENV["MATCH_KEYCHAIN_NAME"]
+  keychain_password = ENV["MATCH_KEYCHAIN_PASSWORD"]
+
   before_all do
     unlock_keychain(path: '~/Library/Keychains/login.keychain',password: "A1DC2A63B3D14817A64619FDDBC92264")
     clear_derived_data
@@ -35,11 +40,11 @@ platform :ios do
     # @fastlane_dir = File.expand_path(File.dirname(__FILE__))
 
     create_keychain(
-      name: 'apk_ggwp',
+      name: keychain_name,
+      password: keychain_password,
       unlock: true,
       timeout: false,
       default_keychain: true,
-      password: 'ggwp',
       add_to_search_list: true
     )
   end
@@ -61,8 +66,8 @@ platform :ios do
     # match(type: "appstore", readonly: true,keychain_name: 'fastlane_enterprise',keychain_password: 'ggwp')
     match(
 		type: "appstore",
-		keychain_name: 'apk_ggwp',
-		keychain_password: 'ggwp',
+		keychain_name: keychain_name,
+		keychain_password: keychain_password,
 		readonly: true,
 		verbose: true
 	)
@@ -75,6 +80,9 @@ platform :ios do
         # export_xcargs: "-allowProvisioningUpdates",
         verbose: true
       #destination: "platform=iOS Simulator,name=iPhone 6",
+    )
+    delete_keychain(
+      name: "apk_ggwp"
     )
   end
 
