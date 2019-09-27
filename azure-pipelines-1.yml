@@ -62,7 +62,8 @@ steps:
   env:
       FASTLANE_PASSWORD: '$(appleIDPwd)'
       MATCH_PASSWORD: '$(matchPwd)'
-      MATCH_KEYCHAIN_PASSWORD : 'ggwp'
+      MATCH_KEYCHAIN_PASSWORD: 'ggwp'
+      MATCH_KEYCHAIN_NAME: 'apk_ggwp'
 
 # - task: CmdLine@2
 #   displayName: 'MANUAL BUILD'
