@@ -27,12 +27,12 @@ platform :ios do
   # end
 
   before_all do
-    # unlock_keychain(path: '~/Library/Keychains/login.keychain',password: "A1DC2A63B3D14817A64619FDDBC92264")
+    unlock_keychain(path: '~/Library/Keychains/login.keychain',password: "A1DC2A63B3D14817A64619FDDBC92264")
     clear_derived_data
     # cocoapods(
     #   clean:true
     # )
-    @fastlane_dir = File.expand_path(File.dirname(__FILE__))
+    # @fastlane_dir = File.expand_path(File.dirname(__FILE__))
 
     create_keychain(
       name: 'apk_ggwp',
