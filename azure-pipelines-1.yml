@@ -63,19 +63,13 @@ steps:
 #       FASTLANE_PASSWORD: '$(appleIDPwd)'
 #       MATCH_PASSWORD: '$(matchPwd)'
 #       MATCH_KEYCHAIN_PASSWORD : 'A1DC2A63B3D14817A64619FDDBC92264'
-- task: CmdLine@2
-  displayName: 'Touch log file'
-  condition: always()
-  continueOnError: true
-  inputs:
-    script: 'touch /Users/vsts/Library/Logs/gym/TimeTable-TimeTable.log'
 
 - task: CmdLine@2
   displayName: 'MANUAL BUILD'
   condition: always()
   continueOnError: true
   inputs:
-    script: 'set -o pipefail && xcodebuild -scheme TimeTable -project "/Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj" -configuration Release -sdk "iphoneos" -destination "generic/platform=iOS" -archivePath /Users/vsts/Library/Developer/Xcode/Archives/2019-09-27/TimeTable\ 2019-09-27\ 03.57.31.xcarchive archive | tee /Users/vsts/Library/Logs/gym/TimeTable-TimeTable.log | xcpretty'
+    script: 'set -o pipefail && xcodebuild -scheme TimeTable -project "/Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj" -configuration Release -sdk "iphoneos" -destination "generic/platform=iOS" -archivePath /Users/vsts/Library/Developer/Xcode/Archives/2019-09-27/TimeTable\ 2019-09-27\ 03.57.31.xcarchive archive | xcpretty'
     
 - task: CmdLine@2
   displayName: 'LOG'
