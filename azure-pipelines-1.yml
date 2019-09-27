@@ -77,7 +77,14 @@ steps:
   continueOnError: true
   inputs:
     script: 'cat /Users/vsts/Library/Logs/gym/TimeTable-Timetable.log'
-  
+
+- task: CmdLine@2
+  displayName: 'Check README.md'
+  condition: always()
+  continueOnError: true
+  inputs:
+    script: 'cat /Users/vsts/agent/2.155.1/work/1/s/fastlane/README.md'
+
 - task: CmdLine@2
   displayName: 'Check installed Certs'
   condition: always()
