@@ -63,6 +63,12 @@ steps:
 #       FASTLANE_PASSWORD: '$(appleIDPwd)'
 #       MATCH_PASSWORD: '$(matchPwd)'
 #       MATCH_KEYCHAIN_PASSWORD : 'A1DC2A63B3D14817A64619FDDBC92264'
+- task: CmdLine@2
+  displayName: 'Touch log file'
+  condition: always()
+  continueOnError: true
+  inputs:
+    script: 'touch /Users/vsts/Library/Logs/gym/TimeTable-TimeTable.log'
 
 - task: CmdLine@2
   displayName: 'MANUAL BUILD'
