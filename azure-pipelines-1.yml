@@ -77,6 +77,12 @@ steps:
   inputs:
     script: 'security find-identity -v -p codesigning apk_ggwp'
     
+- task: CmdLine@2
+  displayName: 'Check Fastlane ENV'
+  condition: always()
+  continueOnError: true
+  inputs:
+    script: 'fastlane env'
 # - task: Xcode@5
 #   inputs:
 #     actions: 'build'
