@@ -39,7 +39,8 @@ platform :ios do
       unlock: true,
       timeout: false,
       default_keychain: true,
-      password: 'ggwp'
+      password: 'ggwp',
+      add_to_search_list: true
     )
   end
   # def ensure_temp_keychain(name)
