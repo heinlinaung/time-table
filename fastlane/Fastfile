@@ -81,6 +81,7 @@ platform :ios do
         verbose: true
       #destination: "platform=iOS Simulator,name=iPhone 6",
     )
+    pilot
     delete_keychain(
       name: "apk_ggwp"
     )
