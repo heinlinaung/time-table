@@ -41,6 +41,12 @@ steps:
 # - task: CmdLine@2
 #   inputs:
 #     script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
+
+- task: CmdLine@2
+  displayName: 'Install fastlane plugin - changelog'
+  inputs:
+    script: 'fastlane add_plugin changelog'
+
 - task: CmdLine@2
   displayName: 'Check OS version'
   inputs:
