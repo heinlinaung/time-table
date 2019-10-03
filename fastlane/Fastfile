@@ -16,29 +16,16 @@
 default_platform(:ios)
 
 platform :ios do
-  # desc "Push a new beta build to TestFlight"
-  # lane :beta do
-  # 	match(type: "development", readonly: is_ci)
-  #   increment_build_number(xcodeproj: "TimeTable.xcodeproj")
-  #   # build_app(scheme: "TimeTable")
-  #   gym(scheme: "TimeTable")
-  #   upload_to_testflight
-  #   push_to_git_remote
-  # end
+  # Fetch the keychain env variables(securely stored in the azure pipeline yml)
+  # keychain_name = ENV["MATCH_KEYCHAIN_NAME"]
+  # keychain_password = ENV["MATCH_KEYCHAIN_PASSWORD"]
 
-  # Fetch the keychain env variables
-  # securely stored in the azure pipeline yml
-  keychain_name = ENV["MATCH_KEYCHAIN_NAME"]
-  keychain_password = ENV["MATCH_KEYCHAIN_PASSWORD"]
+  keychain_name = "apk_ggwp"
+  keychain_password = "ggwp"
 
   before_all do
     unlock_keychain(path: '~/Library/Keychains/login.keychain',password: "A1DC2A63B3D14817A64619FDDBC92264")
     clear_derived_data
-    # cocoapods(
-    #   clean:true
-    # )
-    # @fastlane_dir = File.expand_path(File.dirname(__FILE__))
-
     create_keychain(
       name: keychain_name,
       password: keychain_password,
@@ -48,43 +35,39 @@ platform :ios do
       add_to_search_list: true
     )
   end
-  # def ensure_temp_keychain(name)
-  #   delete_keychain(
-  #     name: name
-  #   ) if File.exist? File.expand_path("~/Library/Keychains/#{name}-db")
-  #   create_keychain(
-  #     name: name,
-  #     password: 'ggwp',
-  #     unlock: true,
-  #     default_keychain: true,
-  #     timeout: false
-  #   )
-  # end
 
   lane :beta do
-  	# ensure_temp_keychain 'fastlane_enterprise'
-    # match(type: "appstore", readonly: true,keychain_name: 'fastlane_enterprise',keychain_password: 'ggwp')
-    match(
-		type: "appstore",
-		keychain_name: keychain_name,
-		keychain_password: keychain_password,
-		readonly: true,
-		verbose: true
-	)
     increment_build_number(xcodeproj: "TimeTable.xcodeproj")
+    increment_version_number
+
+    build_number = get_build_number
+    version_number = get_version_number
+    changelog = read_changelog(changelog_path: './CHANGELOG.md')
+    # changelog_path: './release_CHANGELOG.md' # for "Release" lane
+
+    match(
+      type: "appstore",
+      keychain_name: keychain_name,
+      keychain_password: keychain_password,
+      readonly: true,
+      verbose: true
+    )
+
     gym(
     	scheme: "TimeTable",
     	configuration: "Release",
     	clean: false,
         sdk: "iphoneos",
-        # export_xcargs: "-allowProvisioningUpdates",
         verbose: true
-      #destination: "platform=iOS Simulator,name=iPhone 6",
     )
-    pilot
-    delete_keychain(
-      name: "apk_ggwp"
-    )
+
+    # pilot
+    stamp_changelog(section_identifier: "Version #{version_number}, Build #{build_number}") # Stamp Unreleased section with newly released build number
+    # commit to git the changes from bumping version number
+    commit_version_bump(message: "Committed version bump",
+                        include: "CHANGELOG.md")
+    push_to_git_remote
+    delete_keychain(name: keychain_name)
   end
 
 
