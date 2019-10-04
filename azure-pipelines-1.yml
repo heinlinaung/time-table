@@ -41,11 +41,19 @@ steps:
 # - task: CmdLine@2
 #   inputs:
 #     script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
+- task: CmdLine@2
+  displayName: 'Install fastlane plugin - changelog'
+  inputs:
+    script: 'gem install bundler'
+- task: CmdLine@2
+  displayName: 'Install fastlane plugin - changelog'
+  inputs:
+    script: 'bundle install'
 
 - task: CmdLine@2
   displayName: 'Install fastlane plugin - changelog'
   inputs:
-    script: '/usr/local/bin/fastlane install_plugins'
+    script: 'bundle exec fastlane install_plugins'
 # - task: CmdLine@2
 #   displayName: 'Install fastlane plugin - changelog'
 #   inputs:
@@ -68,7 +76,7 @@ steps:
 - task: CmdLine@2
   displayName: '[RUN] fastlane beta with verbose'
   inputs:
-    script: '/usr/local/bin/fastlane beta  --verbose'
+    script: 'bundle exec fastlane beta  --verbose'
   env:
       FASTLANE_PASSWORD: '$(appleIDPwd)'
       MATCH_PASSWORD: '$(matchPwd)'
