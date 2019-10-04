@@ -25,7 +25,16 @@ steps:
 #     certSecureFile: 'Certificates(GG).p12'
 #     certPwd: '$(P12password)'
 #     keychain: 'temp'
+- task: CmdLine@2
+  displayName: '[SETUP] git config username'
+  inputs:
+    script: 'git config --global user.email "heinlinaung@amdon.com"'
 
+- task: CmdLine@2
+  displayName: '[SETUP] git config username'
+  inputs:
+    script: 'git config --global user.name "Hein Lin Aung"'
+    
 # - task: InstallAppleCertificate@2
 #   inputs:
 #     certSecureFile: 'iPhDev(9V-lwin).p12'
