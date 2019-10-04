@@ -45,8 +45,11 @@ steps:
 - task: CmdLine@2
   displayName: 'Install fastlane plugin - changelog'
   inputs:
-    script: 'fastlane install_plugins'
-
+    script: 'bundle exec fastlane install_plugins'
+- task: CmdLine@2
+  displayName: 'Install fastlane plugin - changelog'
+  inputs:
+    script: 'bundle exec fastlane upgrade_plugins'
 - task: CmdLine@2
   displayName: 'Check OS version'
   inputs:
