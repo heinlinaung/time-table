@@ -45,7 +45,7 @@ steps:
 - task: CmdLine@2
   displayName: 'Install fastlane plugin - changelog'
   inputs:
-    script: 'fastlane add_plugin changelog'
+    script: 'fastlane install_plugins'
 
 - task: CmdLine@2
   displayName: 'Check OS version'
