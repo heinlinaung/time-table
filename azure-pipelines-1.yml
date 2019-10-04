@@ -29,7 +29,7 @@ steps:
 - task: CmdLine@2
   displayName: '[SETUP] git config username'
   inputs:
-    script: 'git config --global url."git@gitlab.com:".insteadOf "https://gitlab.com/"'
+    script: 'git config --global url."git@github.com:".insteadOf "https://github.com/"'
 
 # - task: CmdLine@2
 #   displayName: '[SETUP] git config username'
