@@ -72,21 +72,24 @@ github.com,192.30.252.128 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9
 #   displayName: 'Install fastlane plugin - changelog'
 #   inputs:
 #     script: 'bundle exec fastlane upgrade_plugins'
-- task: CmdLine@2
-  displayName: 'Check OS version'
-  inputs:
-    script: 'sw_vers'
+# - task: CmdLine@2
+#   displayName: 'Check OS version'
+#   inputs:
+#     script: 'sw_vers'
 
-- task: CmdLine@2
-  displayName: 'ShowSDKs'
-  inputs:
-    script: '/usr/bin/xcodebuild -showsdks'
+# - task: CmdLine@2
+#   displayName: 'ShowSDKs'
+#   inputs:
+#     script: '/usr/bin/xcodebuild -showsdks'
 
+# - task: CmdLine@2
+#   displayName: 'Xcode version'
+#   inputs:
+#     script: '/usr/bin/xcodebuild -version'
 - task: CmdLine@2
-  displayName: 'Xcode version'
+  displayName: '[LOG] -> Check git config'
   inputs:
-    script: '/usr/bin/xcodebuild -version'
-
+    script: 'git config --list'
 - task: CmdLine@2
   displayName: '[RUN] fastlane beta with verbose'
   inputs:
