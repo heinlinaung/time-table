@@ -67,7 +67,7 @@ platform :ios do
     commit_version_bump(message: "Committed version bump",
                         include: "CHANGELOG.md")
     push_to_git_remote(
-      local_branch: "master",
+      # local_branch: "master",
       remote_branch: "master"
     )
     delete_keychain(name: keychain_name)
