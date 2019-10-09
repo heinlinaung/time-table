@@ -25,10 +25,15 @@ github.com,192.30.252.128 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9
 #     certPwd: '$(P12password)'
 #     keychain: 'temp'
 
+# - task: CmdLine@2
+#   displayName: '[SETUP] git config https->git'
+#   inputs:
+#     script: 'git config --global url."git@github.com:".insteadOf "https://github.com/"'
+
 - task: CmdLine@2
-  displayName: '[SETUP] git config https->git'
+  displayName: '[SETUP] Update git remote url'
   inputs:
-    script: 'git config --global url."git@github.com:".insteadOf "https://github.com/"'
+    script: 'git remote set-url origin git@github.com:heinlinaung/time-table.git'
 
 - task: CmdLine@2
   displayName: '[SETUP] git config username'
