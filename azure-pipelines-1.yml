@@ -16,9 +16,7 @@ steps:
   inputs:
     knownHostsEntry: 'bitbucket.org,131.103.20.168 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw=='
     sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCqalxjeXSwhWQizVjH89eC8YsVmrCgrp9Zu3y5nQa9taNDEOh1WyklzsMoI2rdiFDtPu6NchqOalfMfQdeyKhxeNf82S88IVws7DpcDV9o1n+E585id1DYy/T7gSHsQ5Sri6LDKvkY13U6xpml/MSzpkghwasCy1suHsSFX7zYr5y6/FnSJiIh8BJRKxoR6onioDZphU3rEwqA52v+3B29I6NNao1J+LQfAebCNs67tjClMMcMEF8CQAbbNx68U4OrcRtlEloJFBNWCAckmiW6DGzMK9NLGsuF1KhHQy0ZkxG2vCwDvKukPfS3hC544+wAFyfKHBFxSeQx0+unouDC8hpCb9HSf/2yFcF5gd6YHOtVnzyiw3P8iM4t0ZwmA0FyJlRCdRcK01WQrO7q3ceAPW5XILiQ4Dg9mbPznrgDTgOfThIPJcpudACC4qtbQdcBB53KJ/4PjX+fHuZukzCvLBusBIzjKH/bI6PvJeVwUCVXsOKIwlbNUJCwckG+T10p5AO5ayVaBE2Cg5hVw8jlD+YqYlW8DcBC7tOFPwG3jDsKz3Kw/bxoes/yL9zstyTqCtO/Aul2J8o6B6cWNz4YWQsw60JEHF68yJySSU+RdLCFZS15VGBgybiwhSkfJKQktPpRqYsCPnAJOFghJxVOTwddXWO5xx+dOa6ASBGaNw== heinlinaung@amdon.com'
-    # sshPassphrase: '$(sshPass)'
     sshKeySecureFile: 'id_rsa'
-
 # - task: InstallAppleCertificate@2
 #   displayName: 'Install Apple Cert'
 #   inputs:
@@ -26,6 +24,35 @@ steps:
 #     certPwd: '$(P12password)'
 #     keychain: 'temp'
 
+# - task: CmdLine@2
+#   displayName: '[SETUP] git config https->git'
+#   inputs:
+#     script: 'git config --global url."git@github.com:".insteadOf "https://github.com/"'
+
+- task: CmdLine@2
+  displayName: '[SETUP] Update git remote url'
+  inputs:
+    script: 'git remote set-url origin git@github.com:heinlinaung/time-table.git'
+
+- task: PowerShell@2
+  displayName: '[SETUP] Add github to known_hosts'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      Add-Content -Path "~/.ssh/known_hosts" -Value "github.com,192.30.252.128 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
+
+- task: CmdLine@2
+  displayName: '[SETUP] git config username'
+  inputs:
+    script: 'git config --global user.email "heinlinaung6891@gmail.com"'
+
+- task: CmdLine@2
+  displayName: '[SETUP] git config username'
+  inputs:
+    script: 'git config --global user.name "Hein Lin Aung"'
+    
 # - task: InstallAppleCertificate@2
 #   inputs:
 #     certSecureFile: 'iPhDev(9V-lwin).p12'
@@ -41,31 +68,45 @@ steps:
 # - task: CmdLine@2
 #   inputs:
 #     script: 'ls /Users/vsts/agent/2.155.1/work/1/s/TimeTable.xcodeproj/'
+- task: CmdLine@2
+  displayName: 'Install fastlane plugin - changelog'
+  inputs:
+    script: 'gem install bundler'
+- task: CmdLine@2
+  displayName: 'Install fastlane plugin - changelog'
+  inputs:
+    script: 'bundle install'
 
 - task: CmdLine@2
   displayName: 'Install fastlane plugin - changelog'
   inputs:
-    script: 'fastlane install_plugins'
+    script: 'bundle exec fastlane install_plugins'
+# - task: CmdLine@2
+#   displayName: 'Install fastlane plugin - changelog'
+#   inputs:
+#     script: 'bundle exec fastlane upgrade_plugins'
+# - task: CmdLine@2
+#   displayName: 'Check OS version'
+#   inputs:
+#     script: 'sw_vers'
 
+# - task: CmdLine@2
+#   displayName: 'ShowSDKs'
+#   inputs:
+#     script: '/usr/bin/xcodebuild -showsdks'
+
+# - task: CmdLine@2
+#   displayName: 'Xcode version'
+#   inputs:
+#     script: '/usr/bin/xcodebuild -version'
 - task: CmdLine@2
-  displayName: 'Check OS version'
+  displayName: '[LOG] -> Check git config'
   inputs:
-    script: 'sw_vers'
-
-- task: CmdLine@2
-  displayName: 'ShowSDKs'
-  inputs:
-    script: '/usr/bin/xcodebuild -showsdks'
-
-- task: CmdLine@2
-  displayName: 'Xcode version'
-  inputs:
-    script: '/usr/bin/xcodebuild -version'
-
+    script: 'git config --list'
 - task: CmdLine@2
   displayName: '[RUN] fastlane beta with verbose'
   inputs:
-    script: '/usr/local/bin/fastlane beta  --verbose'
+    script: 'bundle exec fastlane beta  --verbose'
   env:
       FASTLANE_PASSWORD: '$(appleIDPwd)'
       MATCH_PASSWORD: '$(matchPwd)'
