@@ -38,7 +38,7 @@ github.com,192.30.252.128 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9
 - task: CmdLine@2
   displayName: '[SETUP] git config username'
   inputs:
-    script: 'git config --global user.email "heinlinaung@amdon.com"'
+    script: 'git config --global user.email "heinlinaung6891@gmail.com"'
 
 - task: CmdLine@2
   displayName: '[SETUP] git config username'
