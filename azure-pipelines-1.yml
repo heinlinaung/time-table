@@ -26,19 +26,19 @@ github.com,192.30.252.128 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9
 #     keychain: 'temp'
 
 - task: CmdLine@2
-  displayName: '[SETUP] git config username'
+  displayName: '[SETUP] git config https->git'
   inputs:
     script: 'git config --global url."git@github.com:".insteadOf "https://github.com/"'
 
-# - task: CmdLine@2
-#   displayName: '[SETUP] git config username'
-#   inputs:
-#     script: 'git config --global user.email "heinlinaung@amdon.com"'
+- task: CmdLine@2
+  displayName: '[SETUP] git config username'
+  inputs:
+    script: 'git config --global user.email "heinlinaung@amdon.com"'
 
-# - task: CmdLine@2
-#   displayName: '[SETUP] git config username'
-#   inputs:
-#     script: 'git config --global user.name "Hein Lin Aung"'
+- task: CmdLine@2
+  displayName: '[SETUP] git config username'
+  inputs:
+    script: 'git config --global user.name "Hein Lin Aung"'
     
 # - task: InstallAppleCertificate@2
 #   inputs:
