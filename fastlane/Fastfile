@@ -64,7 +64,7 @@ platform :ios do
     # pilot
     stamp_changelog(section_identifier: "Version #{version_number}, Build #{build_number}") # Stamp Unreleased section with newly released build number
     # commit to git the changes from bumping version number
-    commit_version_bump(message: "Committed version bump",
+    commit_version_bump(message: "Committed version bump [***NO_CI***]",
                         include: "CHANGELOG.md")
     push_to_git_remote(
       # local_branch: "master",
