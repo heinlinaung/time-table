@@ -78,7 +78,7 @@ platform :ios do
   lane :runTests do
     run_tests(
       scheme: "TimeTable",
-      #code_coverage: true 
+      code_coverage: true 
     )
   end
 
