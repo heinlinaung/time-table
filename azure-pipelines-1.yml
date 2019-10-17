@@ -57,3 +57,9 @@ steps:
       MATCH_PASSWORD: '$(matchPwd)'
       MATCH_KEYCHAIN_PASSWORD: 'ggwp'
       MATCH_KEYCHAIN_NAME: 'apk_ggwp'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/test_output/*.junit'
+    testRunTitle: 'Test'
