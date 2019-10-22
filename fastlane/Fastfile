@@ -78,8 +78,21 @@ platform :ios do
   lane :runTests do
     run_tests(
       scheme: "TimeTable",
-      code_coverage: true 
+      # code_coverage: true 
     )
+    # Generate code coverage report
+    code_cov_args = {
+      scheme: "TimeTable",
+      proj: "TimeTable.xcodeproj",
+      cobertura_xml: true,
+      output_directory: "reports/",
+      workspace: "TimeTable.xcodeproj/project.xcworkspace"
+    }
+    # if ENV["WORKSPACE"]
+    #   code_cov_args[:workspace] = "src/" + ENV["WORKSPACE"]
+    # end
+
+    slather(code_cov_args)
   end
 
 end

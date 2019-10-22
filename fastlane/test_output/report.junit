@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites name='TimeTableTests.xctest' tests='2' failures='0'>
   <testsuite name='TimeTableTests.TimeTableTests' tests='2' failures='0'>
-    <testcase classname='TimeTableTests.TimeTableTests' name='testExample' time='0.030'/>
-    <testcase classname='TimeTableTests.TimeTableTests' name='testPerformanceExample' time='21.860'/>
+    <testcase classname='TimeTableTests.TimeTableTests' name='testExample' time='0.044'/>
+    <testcase classname='TimeTableTests.TimeTableTests' name='testPerformanceExample' time='18.884'/>
   </testsuite>
 </testsuites>
